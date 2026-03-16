@@ -2,7 +2,6 @@ package com.aiplayground.mathlib
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -53,8 +52,8 @@ class NativeMathTest {
     }
 
     @Test
-    fun boostVersionIsNotEmpty() {
-        val version = math.boostVersion()
-        assertTrue("Boost version should not be empty", version.isNotEmpty())
+    fun addToJsonFormat() {
+        val json = math.addToJson(2, 3)
+        assertEquals("""{"a":2,"b":3,"sum":5}""", json)
     }
 }

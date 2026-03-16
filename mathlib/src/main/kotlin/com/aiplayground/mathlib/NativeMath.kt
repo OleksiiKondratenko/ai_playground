@@ -12,11 +12,11 @@ class NativeMath {
 
     external fun nativeMultiply(a: Int, b: Int): Int
 
-    external fun nativeBoostVersion(): String
+    external fun nativeToJson(a: Int, b: Int, sum: Int): String
 
     fun add(a: Int, b: Int): Int = nativeAdd(a, b)
 
     fun multiply(a: Int, b: Int): Int = nativeMultiply(a, b)
 
-    fun boostVersion(): String = nativeBoostVersion()
+    fun addToJson(a: Int, b: Int): String = nativeToJson(a, b, add(a, b))
 }
