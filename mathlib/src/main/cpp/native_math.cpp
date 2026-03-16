@@ -1,5 +1,7 @@
 #include <jni.h>
-#include <cairo.h>
+#include <string>
+#include <boost/version.hpp>
+#include <boost/lexical_cast.hpp>
 
 extern "C" {
 
@@ -14,9 +16,11 @@ Java_com_aiplayground_mathlib_NativeMath_nativeMultiply(JNIEnv *, jobject, jint 
 }
 
 JNIEXPORT jstring JNICALL
-Java_com_aiplayground_mathlib_NativeMath_nativeCairoVersion(JNIEnv *env, jobject) {
-    const char *version = cairo_version_string();
-    return env->NewStringUTF(version);
+Java_com_aiplayground_mathlib_NativeMath_nativeBoostVersion(JNIEnv *env, jobject) {
+    std::string version = std::to_string(BOOST_VERSION / 100000) + "."
+                        + std::to_string(BOOST_VERSION / 100 % 1000) + "."
+                        + std::to_string(BOOST_VERSION % 100);
+    return env->NewStringUTF(version.c_str());
 }
 
 }

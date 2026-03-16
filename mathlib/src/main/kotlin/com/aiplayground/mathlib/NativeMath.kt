@@ -12,11 +12,11 @@ class NativeMath {
 
     external fun nativeMultiply(a: Int, b: Int): Int
 
-    external fun nativeCairoVersion(): String
+    external fun nativeBoostVersion(): String
 
     fun add(a: Int, b: Int): Int = nativeAdd(a, b)
 
     fun multiply(a: Int, b: Int): Int = nativeMultiply(a, b)
 
-    fun cairoVersion(): String = nativeCairoVersion()
+    fun boostVersion(): String = nativeBoostVersion()
 }

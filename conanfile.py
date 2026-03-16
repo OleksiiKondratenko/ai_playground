@@ -3,5 +3,5 @@ from conan import ConanFile
 
 class AiPlaygroundConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "cairo/1.18.4"
+    requires = "boost/1.86.0"
     generators = "CMakeDeps"

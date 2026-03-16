@@ -53,8 +53,8 @@ class NativeMathTest {
     }
 
     @Test
-    fun cairoVersionIsNotEmpty() {
-        val version = math.cairoVersion()
-        assertTrue("Cairo version should not be empty", version.isNotEmpty())
+    fun boostVersionIsNotEmpty() {
+        val version = math.boostVersion()
+        assertTrue("Boost version should not be empty", version.isNotEmpty())
     }
 }
