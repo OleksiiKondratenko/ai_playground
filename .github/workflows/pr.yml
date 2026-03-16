@@ -21,6 +21,18 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Install Android NDK
+        run: sdkmanager --install "ndk;26.1.10909125"
+
+      - name: Set NDK environment
+        run: echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/26.1.10909125" >> $GITHUB_ENV
+
+      - name: Install Conan 2
+        run: pip install "conan>=2,<3"
+
+      - name: Detect Conan default profile
+        run: conan profile detect
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 

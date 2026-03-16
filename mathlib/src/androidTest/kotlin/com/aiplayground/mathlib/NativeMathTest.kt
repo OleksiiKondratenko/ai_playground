@@ -2,6 +2,7 @@ package com.aiplayground.mathlib
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -49,5 +50,11 @@ class NativeMathTest {
     @Test
     fun multiplyMixedSigns() {
         assertEquals(-6, math.multiply(2, -3))
+    }
+
+    @Test
+    fun cairoVersionIsNotEmpty() {
+        val version = math.cairoVersion()
+        assertTrue("Cairo version should not be empty", version.isNotEmpty())
     }
 }
