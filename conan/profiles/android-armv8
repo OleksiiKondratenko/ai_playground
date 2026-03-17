@@ -1,11 +1,8 @@
-[settings]
-os=Android
-os.api_level=24
-arch=armv8
-compiler=clang
-compiler.version=17
-compiler.libcxx=c++_shared
-build_type=Release
+include(android_common)
 
-[conf]
-tools.android:ndk_path={{os.getenv("ANDROID_NDK_HOME")}}
+[settings]
+arch=armv8
+
+[buildenv]
+CC=aarch64-linux-android{{os.getenv("ANDROID_API_V")}}-clang
+CXX=aarch64-linux-android{{os.getenv("ANDROID_API_V")}}-clang++

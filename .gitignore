@@ -1,10 +1,80 @@
-*.iml
-.gradle
-/local.properties
-/.idea
+# Kotlin build files
+**/build/
+/out/
+/bin/
+/.gradle/
+/.idea/
+/*.iml
+
+# Kotlin specific
+*.class
+*.jar
+*.war
+*.ear
+*.kotlin_module
+
+# IntelliJ project files
+*.ipr
+*.iws
+*.idea/
+
+# OS generated files
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+
+# Logs
+*.log
+
+# Native/C++ build files
+/cmake-build-*/
+/CMakeFiles/
+/CMakeCache.txt
+**/CMakeUserPresets.json
+Makefile
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.a
+*.lib
+
+# Test results
+/test-results/
+/test-output/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Gradle Wrapper
+/gradle/wrapper/gradle-wrapper.properties
+/gradle/wrapper/gradle-wrapper.jar
+
+# Local properties
 local.properties
+
+# Coverage reports
+*.ec
+*.exec
+*.coverage
+*.hprof
+
+# Android Studio
+*.apk
+*.ap_
+captures/
+.externalNativeBuild/
+.cxx/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/.name
+*.jks
+
+# VSCode
+.vscode/

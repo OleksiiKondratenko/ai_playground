@@ -1,0 +1,9 @@
+[requires]
+zlib/1.2.12
+nlohmann_json/3.12.0
+
+[generators]
+CMakeDeps
+
+[layout]
+cmake_layout
