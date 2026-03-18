@@ -3,6 +3,7 @@
 /out/
 /bin/
 /.gradle/
+buildSrc/.gradle/
 /.idea/
 /*.iml
 
