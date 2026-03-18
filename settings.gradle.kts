@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ai_playground"
-include(":mathlib")
+include(":ai_playground")

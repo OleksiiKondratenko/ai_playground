@@ -50,4 +50,10 @@ class NativeMathTest {
     fun multiplyMixedSigns() {
         assertEquals(-6, math.multiply(2, -3))
     }
+
+    @Test
+    fun addToJsonFormat() {
+        val json = math.addToJson(2, 3)
+        assertEquals("""{"a":2,"b":3,"sum":5}""", json)
+    }
 }

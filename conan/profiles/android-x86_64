@@ -1,0 +1,8 @@
+include(android_common)
+
+[settings]
+arch=x86_64
+
+[buildenv]
+CC=x86_64-linux-android{{os.getenv("ANDROID_API_V")}}-clang
+CXX=x86_64-linux-android{{os.getenv("ANDROID_API_V")}}-clang++
