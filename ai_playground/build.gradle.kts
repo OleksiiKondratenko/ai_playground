@@ -1,69 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-}
-
-val abiToConanProfile = mapOf(
-    "x86_64" to "android-x86_64",
-    "arm64-v8a" to "android-armv8"
-)
-
-fun runShell(cmd: String, envVars: Map<String, String>) {
-    val isWindows = System.getProperty("os.name").lowercase().contains("windows")
-    val shellCmd = if (isWindows) {
-        listOf("cmd", "/c", cmd)
-    } else {
-        listOf("sh", "-c", cmd)
-    }
-
-    val builder = ProcessBuilder(shellCmd)
-        .apply {
-            environment().putAll(envVars)
-        }
-    logger.info("env: ${builder.environment()}")
-    logger.info(">> $shellCmd")
-
-    val proc = builder.start()
-
-    val result = proc.inputStream.bufferedReader().readText()
-    val errors = proc.errorStream.bufferedReader().readText()
-
-    proc.waitFor()
-
-    if (proc.exitValue() != 0) {
-        throw Exception("Execution failed! Output: $result Error: $errors")
-    } else {
-        logger.info(result)
-        logger.info(errors)
-    }
-}
-
-val conanInstall by tasks.registering {
-    val conanDir = rootProject.file("conan")
-    val conanFileDir = rootProject.file("ai_playground/src/main/cpp")
-    val outputBase = layout.buildDirectory.dir("conan")
-
-    doLast {
-        abiToConanProfile.forEach { (abi, profile) ->
-            val cmd = "conan install $conanFileDir " +
-                        "--profile:host=${conanDir.resolve("profiles/$profile")} " +
-                        "--output-folder=${outputBase.get().dir(abi).asFile} " +
-                        "--build missing"
-
-            val env = mapOf(
-                "ANDROID_NDK_HOME" to android.ndkDirectory.absolutePath,
-                "ANDROID_API_V" to android.defaultConfig.minSdk.toString())
-            runShell(cmd, env)
-        }
-    }
-}
-
-afterEvaluate {
-    tasks.matching {
-        it.name.contains("CMake", ignoreCase = true) && it.name.contains("configure", ignoreCase = true)
-    }.configureEach {
-        dependsOn(conanInstall)
-    }
+    id("conan-install")
 }
 
 android {
@@ -75,7 +13,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
-            abiFilters += abiToConanProfile.keys
+            abiFilters += conan.abiToProfile.get().keys
         }
 
         externalNativeBuild {
